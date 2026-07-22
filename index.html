@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bee's Bakery Cafe | Scratch-Made Breakfast & Lunch in Oakhurst, CA</title>
+<title>Bee's Bakery Cafe | Scratch-Made Breakfast &amp; Lunch in Oakhurst, CA</title>
 <meta name="description" content="Bee's Bakery Cafe is Oakhurst's favorite all-day breakfast & lunch spot near Yosemite. Belgian waffles, avocado toast, smashed burgers, local coffee & a sunny patio. Open daily.">
 <link rel="canonical" href="https://www.beesbakerycafe.com/">
 <meta property="og:title" content="Bee's Bakery Cafe | Oakhurst, CA">
 <meta property="og:description" content="Scratch-made breakfast, lunch & bakery favorites at the gateway to Yosemite. View the menu, get directions, and order online.">
 <meta property="og:type" content="restaurant.menu">
+<meta property="og:url" content="https://www.beesbakerycafe.com/">
 <meta property="og:image" content="images/avocado-toast.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#17676A">
-<meta name="google" content="notranslate">
 <link rel="icon" type="image/png" href="images/logo bee's.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,500..700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-<!-- Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,411 +47,6 @@
   "sameAs": ["https://www.instagram.com/beesbakerycafe", "https://facebook.com/profile/php"]
 }
 </script>
-
-<style>
-  /* ============================================================
-     BEE'S BAKERY CAFE — Design tokens & Base Styles
-     ============================================================ */
-  :root {
-    --cream:      #FBF2DE;
-    --cream-2:    #F3E5C0;
-    --paper:      #FFFBF2;
-    --ink:        #241D14;
-    --ink-soft:   #55493A;
-    --teal:       #17676A;
-    --teal-deep:  #0D4547;
-    --teal-tint:  #E4F0EE;
-    --honey:      #E4A233;
-    --honey-deep: #B97C1A;
-    --coral:      #C24A3B;
-    --coral-deep: #9B3A2E;
-    --line:       #DFCB9C;
-
-    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-    --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-mono: "Space Mono", "SFMono-Regular", Menlo, monospace;
-
-    --radius-sm: 6px;
-    --radius-md: 14px;
-    --radius-lg: 28px;
-    --shadow-card: 0 18px 40px -22px rgba(36,29,20,.45);
-    --shadow-soft: 0 10px 24px -16px rgba(36,29,20,.35);
-
-    --maxw: 1220px;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  img { max-width: 100%; display: block; }
-  a { color: inherit; text-decoration: none; }
-  ul { margin: 0; padding: 0; list-style: none; }
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1.08;
-    margin: 0 0 .5em;
-    color: var(--ink);
-    letter-spacing: -.01em;
-  }
-  p { margin: 0 0 1em; }
-  
-  .container {
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* ---------- Utilities ---------- */
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--teal-deep);
-    display: inline-flex;
-    align-items: center;
-    gap: .5em;
-    margin-bottom: 1em;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 22px; height: 2px;
-    background: var(--coral);
-    display: inline-block;
-  }
-  .eyebrow.on-dark { color: var(--honey); }
-  
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: .95rem;
-    padding: .95em 1.6em;
-    border-radius: 100px;
-    border: 1.5px solid transparent;
-    cursor: pointer;
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
-    white-space: nowrap;
-  }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-primary { background: var(--coral); color: var(--paper); box-shadow: var(--shadow-soft); }
-  .btn-primary:hover { background: var(--coral-deep); }
-  .btn-ghost { background: transparent; border-color: currentColor; color: var(--ink); }
-  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
-  .btn-ghost.on-dark { color: var(--paper); }
-  .btn-ghost.on-dark:hover { background: var(--paper); color: var(--teal-deep); }
-  .btn-honey { background: var(--honey); color: var(--ink); }
-  .btn-honey:hover { background: var(--honey-deep); color: var(--paper); }
-
-  .section-head { max-width: 640px; margin-bottom: 2.6rem; }
-  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
-  .section-head p { color: var(--ink-soft); font-size: 1.05rem; }
-
-  /* ---------- Header ---------- */
-  .site-header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(251,242,222,.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .header-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 24px;
-    max-width: var(--maxw); margin: 0 auto;
-  }
-  .brand-logo { height: 70px; width: auto; display: block; }
-  
-  .main-nav { display: flex; align-items: center; gap: 2.2em; }
-  .main-nav a {
-    font-size: .95rem; font-weight: 600; color: var(--ink-soft);
-    position: relative; padding: .2em 0; transition: color 0.2s ease;
-  }
-  .main-nav a:hover, .main-nav a.active { color: var(--coral); }
-  .main-nav a.active::after {
-    content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--coral);
-  }
-  .header-cta { display: flex; align-items: center; gap: 12px; }
-
-  .nav-toggle {
-    display: none; background: none; border: none; cursor: pointer; padding: 6px;
-    flex-direction: column; gap: 5px; z-index: 101;
-  }
-  .nav-toggle span { 
-    width: 24px; height: 2px; background: var(--ink); display: block; 
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  
-  /* Mobile Menu Styles */
-  @media (max-width: 900px) {
-    .main-nav {
-      position: fixed; inset: 0; top: 98px; 
-      width: 100%; height: calc(100dvh - 98px);
-      background: var(--cream);
-      flex-direction: column; align-items: center; justify-content: flex-start;
-      padding: 3rem 1.6rem;
-      gap: 2rem; transform: translateX(100%); transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow-y: auto; border-top: 1px solid var(--line);
-      z-index: 100;
-    }
-    .main-nav.open { transform: translateX(0); }
-    .main-nav a { font-size: 1.5rem; }
-    .nav-toggle { display: flex; }
-    .header-cta .btn-ghost { display: none; }
-    
-    /* Hamburger to X Animation */
-    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  }
-
-  /* ---------- Hero ---------- */
-  .hero {
-    padding: 120px 24px;
-    overflow: hidden;
-    text-align: center;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Imagem otimizada de fundo */
-    background: linear-gradient(rgba(36,29,20,0.75), rgba(36,29,20,0.85)), url('images/gallery1.jpg') center/cover no-repeat;
-  }
-  .hero-inner {
-    display: flex; flex-direction: column; align-items: center; max-width: 850px;
-  }
-  .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: var(--paper);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 em { color: var(--honey); font-style: italic; }
-  .hero-lede { 
-    font-size: 1.15rem; color: var(--cream-2); max-width: 55ch; 
-    margin: 0 auto; text-shadow: 0 1px 4px rgba(0,0,0,0.5); 
-  }
-  .hero .eyebrow { justify-content: center; color: var(--honey); text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
-  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin: 2.5rem 0; justify-content: center; }
-  .hero-stats { display: flex; gap: 32px; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
-  .hero-stat b { display: block; font-family: var(--font-display); font-size: 1.6rem; color: var(--paper); text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
-  .hero-stat span { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-2); text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
-
-  /* ---------- Marquee Strip ---------- */
-  .strip {
-    background: var(--teal-deep);
-    color: var(--cream);
-    overflow: hidden;
-    padding: 14px 0;
-    white-space: nowrap;
-  }
-  .strip-track {
-    display: inline-flex; gap: 2.5em;
-    animation: scroll 32s linear infinite;
-    font-family: var(--font-mono); font-size: .82rem; letter-spacing: .05em; text-transform: uppercase;
-  }
-  .strip-track span { display: inline-flex; align-items: center; gap: 2.5em; }
-  .strip-track b { color: var(--honey); }
-  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  /* ---------- Generic Pad ---------- */
-  .pad { padding: 96px 0; }
-
-  /* ---------- About Split Section ---------- */
-  .split .container {
-    max-width: 900px; margin: 0 auto;
-    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2.5rem;
-  }
-  .split-media { width: 100%; }
-  .split-media img { 
-    border-radius: var(--radius-lg); box-shadow: var(--shadow-card); 
-    width: 100%; max-height: 450px; object-fit: cover; 
-  }
-  .split-copy h2 { font-size: clamp(2rem, 3.4vw, 2.7rem); }
-  .split-copy p { color: var(--ink-soft); font-size: 1.05rem; }
-  .stat-row { display: flex; gap: 36px; margin: 1.8rem 0; flex-wrap: wrap; justify-content: center; }
-  .stat-row div b { font-family: var(--font-display); font-size: 2rem; color: var(--teal-deep); display: block; }
-  .stat-row div span { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); }
-
-  /* ---------- Menu Highlights ---------- */
-  .section-tinted { 
-    background: var(--paper); border-top: 1px solid var(--line); 
-    border-bottom: 1px solid var(--line); padding: 96px 0; 
-  }
-  .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-  .dish-card {
-    background: var(--cream); border-radius: var(--radius-md); overflow: hidden;
-    box-shadow: var(--shadow-soft); transition: transform .2s ease, box-shadow .2s ease;
-    display: flex; flex-direction: column;
-  }
-  .dish-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
-  .dish-card .thumb { aspect-ratio: 4/3; overflow: hidden; }
-  .dish-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-  .dish-card:hover .thumb img { transform: scale(1.05); }
-  .dish-card .body { padding: 18px 18px 20px; flex: 1; display: flex; flex-direction: column; }
-  .dish-card .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 0.5rem; }
-  .dish-card h4 { font-size: 1.08rem; margin: 0; }
-  .dish-card .price { font-family: var(--font-mono); color: var(--coral-deep); font-weight: 700; }
-  .dish-card p { color: var(--ink-soft); font-size: .9rem; margin: 0; flex: 1; }
-  .dish-tag { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--honey-deep); margin-bottom: 0.5rem; display: block; }
-  
-  @media (max-width: 1000px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .card-grid { grid-template-columns: 1fr; } }
-  .center-cta { text-align: center; margin-top: 3rem; }
-
-  /* ---------- Testimonials ---------- */
-  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .testi-card {
-    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md);
-    padding: 28px; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .testi-card .stars { color: var(--honey); letter-spacing: 2px; margin-bottom: .8em; display: block; }
-  .testi-card p { font-family: var(--font-display); font-size: 1.12rem; color: var(--ink); font-style: italic; margin-bottom: 1.5rem; }
-  .testi-name { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
-  @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
-
-  /* ============================================================
-     DYNAMIC 3D PORTFOLIO GALLERY (Vanilla JS + CSS Integration)
-     ============================================================ */
-  .pg-section { padding: 96px 0; background: var(--cream); overflow: hidden; }
-  .pg-container {
-    background: rgba(255, 251, 242, 0.5);
-    backdrop-filter: blur(8px);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--line);
-    max-width: 1280px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .pg-header {
-    text-align: center; padding: 64px 32px 32px; position: relative; z-index: 10;
-  }
-  .pg-header h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 2rem; }
-  .pg-btn {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: var(--ink); color: var(--paper);
-    padding: 14px 28px; border-radius: 100px;
-    font-weight: 600; font-family: var(--font-body);
-    transition: background 0.2s ease; margin-bottom: 20px;
-  }
-  .pg-btn svg { width: 20px; height: 20px; transition: transform 0.2s ease; }
-  .pg-btn:hover { background: var(--ink-soft); }
-  .pg-btn:hover svg { transform: translateX(4px); }
-
-  /* Desktop 3D Interactive Track */
-  .pg-desktop {
-    display: none; position: relative;
-    height: 400px; margin-bottom: -150px; 
-    overflow: visible; /* To allow pop-out effect */
-  }
-  .pg-track {
-    display: flex; align-items: flex-end; justify-content: center;
-    padding-bottom: 32px; padding-top: 160px;
-    position: relative;
-  }
-  .pg-card {
-    position: relative;
-    width: clamp(220px, 20vw, 320px); /* Slightly responsive cards */
-    aspect-ratio: 16/9;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    margin-left: -150px; /* Overlap effect */
-    cursor: pointer;
-    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
-    /* Transform managed by JavaScript for smooth interaction */
-    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), z-index 0s;
-  }
-  .pg-card:first-child { margin-left: 0; }
-  .pg-card img {
-    width: 100%; height: 100%; object-fit: cover; object-position: left top;
-    transition: transform 0.4s ease;
-  }
-  
-  /* Mobile Infinite Marquee Track */
-  .pg-mobile { display: block; position: relative; padding-bottom: 40px; overflow: hidden; }
-  .pg-marquee-wrapper { display: flex; gap: 1rem; padding: 0.5rem; width: max-content; }
-  .pg-marquee-track {
-    display: flex; gap: 1rem; flex-shrink: 0;
-    animation: marquee 35s linear infinite;
-  }
-  .pg-marquee-wrapper:hover .pg-marquee-track { animation-play-state: paused; }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - 1rem)); }
-  }
-  .pg-marquee-item {
-    width: 260px; aspect-ratio: 16/9; border-radius: var(--radius-md);
-    overflow: hidden; flex-shrink: 0; cursor: pointer;
-    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-  }
-  .pg-marquee-item:hover { transform: scale(1.03); }
-  .pg-marquee-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-
-  @media (min-width: 768px) {
-    .pg-desktop { display: block; }
-    .pg-mobile { display: none; }
-  }
-
-  /* ---------- Visit / Location ---------- */
-  .visit {
-    background: var(--teal-deep); color: var(--cream);
-    padding: 96px 0; position: relative; overflow: hidden;
-  }
-  .visit::before {
-    content: ""; position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 15% 20%, rgba(228,162,51,.14), transparent 40%),
-      radial-gradient(circle at 85% 80%, rgba(194,74,59,.16), transparent 45%);
-    pointer-events: none;
-  }
-  .visit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; position: relative; align-items: center; }
-  .visit h2 { color: var(--paper); font-size: clamp(2rem, 3.4vw, 2.6rem); }
-  .visit-list { margin-top: 1.6rem; }
-  .visit-list li { display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.14); align-items: flex-start; }
-  .visit-list li:first-child { border-top: none; }
-  .visit-list b { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--honey); width: 96px; flex: none; padding-top: .2em; }
-  .visit-list span { color: #DDEFEC; }
-  .map-frame { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); border: 0; height: 100%; min-height: 400px; }
-  .map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
-  @media (max-width: 900px) { .visit-inner { grid-template-columns: 1fr; } .map-frame { min-height: 300px; } }
-
-  /* ---------- Footer ---------- */
-  .site-footer { background: var(--ink); color: #EFE6D2; padding: 64px 0 28px; }
-  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
-  .footer-brand p { color: #C9BDA4; max-width: 32ch; font-size: 0.95rem; }
-  .footer-col h5 { font-family: var(--font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--honey); margin-bottom: 1.1em; }
-  .footer-col li { margin-bottom: .7em; font-size: 0.95rem; }
-  .footer-col a { color: #D9CCB2; transition: color 0.2s ease; }
-  .footer-col a:hover { color: var(--honey); }
-  .social-icon { width: 22px; height: 22px; object-fit: contain; display: block; filter: brightness(0.8); transition: filter 0.2s ease; }
-  .footer-social { display: flex; gap: 12px; margin-top: 1.2em; }
-  .footer-social a {
-    width: 42px; height: 42px; border-radius: 50%; border: 1px solid #4B4131;
-    display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
-  }
-  .footer-social a:hover { border-color: var(--honey); }
-  .footer-social a:hover .social-icon { filter: brightness(1); }
-  .footer-bottom {
-    margin-top: 52px; padding-top: 24px; border-top: 1px solid #3A3226;
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-    font-size: .82rem; color: #9C907A;
-  }
-  @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
-</style>
 </head>
 <body>
 
@@ -469,7 +65,7 @@
     <div class="header-cta">
       <a href="tel:+15596832393" class="btn btn-ghost">Call Us</a>
       <a href="https://order.toasttab.com/online/bees-bakery-cafe" target="_blank" rel="noopener" class="btn btn-primary">Order Online</a>
-      <button class="nav-toggle" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -477,27 +73,27 @@
 </header>
 
 <main>
+
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" style="background: linear-gradient(rgba(20, 16, 10, 0.75), rgba(20, 16, 10, 0.85)), url('images/patio.jpg') center/cover no-repeat;">
     <div class="container hero-inner">
       <span class="eyebrow on-dark">Est. Oakhurst, California</span>
       <h1>Scratch-made mornings at the <em>gateway to Yosemite.</em></h1>
-      <p class="hero-lede">Belgian waffles fresh off the iron, avocado toast piled high, and coffee roasted just down the road — all served in a sun-warmed dining room the whole family will want to linger in.</p>
-      
+      <p class="hero-lede">Belgian waffles fresh off the iron, avocado toast piled high, and coffee roasted just down the road — all served in a sun-warmed dining room the whole family (and your hiking crew) will want to linger in.</p>
+
       <div class="hero-ctas">
-        <a href="menu.html" class="btn btn-primary">View The Menu</a>
+        <a href="menu.html" class="btn btn-honey">View The Menu</a>
         <a href="contact.html#map" class="btn btn-ghost on-dark">Get Directions</a>
       </div>
-      
+
       <div class="hero-stats">
-        <div class="hero-stat"><b>4.7 ★</b><span>from 572 happy guests</span></div>
+        <div class="hero-stat"><b>4.7 ★</b><span>572 Google reviews</span></div>
         <div class="hero-stat"><b>7 Days</b><span>Breakfast &amp; lunch</span></div>
         <div class="hero-stat"><b>Patio</b><span>Dog-friendly seating</span></div>
       </div>
     </div>
   </section>
 
-  <!-- MARQUEE STRIP -->
   <div class="strip" aria-hidden="true">
     <div class="strip-track">
       <span><b>Locally Roasted Coffee</b> &nbsp;•&nbsp; Belgian Waffles Made Fresh Daily &nbsp;•&nbsp; <b>Women-Owned</b> &nbsp;•&nbsp; Sunny Patio Seating &nbsp;•&nbsp; <b>Online Ordering Available</b> &nbsp;•&nbsp; Minutes from Yosemite</span>
@@ -506,7 +102,7 @@
   </div>
 
   <!-- ABOUT TEASER -->
-  <section class="pad split">
+  <section class="split reveal">
     <div class="container">
       <div class="split-media">
         <img src="images/dining-room.jpg" alt="Retro mid-century dining room at Bee's Bakery Cafe with wood tables, teal walls and string lighting" loading="lazy">
@@ -518,7 +114,7 @@
         <div class="stat-row">
           <div><b>100%</b><span>Made from scratch</span></div>
           <div><b>Local</b><span>Reverent Coffee &amp; Hillerman Honey</span></div>
-          <div><b>LGBTQ+</b><span>&amp; family owned</span></div>
+          <div><b>LGBTQ+</b><span>&amp; family owned, welcoming to all</span></div>
         </div>
         <a href="about.html" class="btn btn-ghost">Read Our Story</a>
       </div>
@@ -526,46 +122,38 @@
   </section>
 
   <!-- MENU HIGHLIGHTS -->
-  <section class="section-tinted">
+  <section class="section-tinted reveal">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">House Favorites</span>
+        <span class="eyebrow" style="justify-content:center">House Favorites</span>
         <h2>What everyone orders twice</h2>
         <p>A taste of the menu — from the waffle iron to the smash-burger flat-top. See everything we make on the full menu page.</p>
       </div>
-      <div class="card-grid">
-        <article class="dish-card">
+      <div class="card-grid reveal-group">
+        <div class="dish-card reveal-item">
           <div class="thumb"><img src="images/avocado-toast.jpg" alt="Avocado toast with feta, roasted red pepper and microgreens" loading="lazy"></div>
           <div class="body">
             <span class="dish-tag">All-Day Breakfast</span>
             <div class="row"><h4>Mediterranean Avocado Toast</h4></div>
             <p>Freshly sliced avocado, feta &amp; roasted tomato over toast with a balsamic glaze. <span class="price">$11</span></p>
           </div>
-        </article>
-        <article class="dish-card">
+        </div>
+        <div class="dish-card reveal-item">
           <div class="thumb"><img src="images/chicken-sandwich.jpg" alt="Crispy fried chicken sandwich with lettuce and cheese, served with tater tots" loading="lazy"></div>
           <div class="body">
             <span class="dish-tag">Lunch</span>
             <div class="row"><h4>Crispy Chicken Sandwich</h4></div>
             <p>Hand-breaded chicken breast, lettuce, tomato, pepperjack &amp; mayo on a bakery bun. <span class="price">$16.50</span></p>
           </div>
-        </article>
-        <article class="dish-card">
+        </div>
+        <div class="dish-card reveal-item">
           <div class="thumb"><img src="images/caprese-sandwich.jpg" alt="The Sicilian sandwich with mortadella, arugula and stracciatella cheese, served with seasoned fries" loading="lazy"></div>
           <div class="body">
             <span class="dish-tag">Lunch</span>
             <div class="row"><h4>The Sicilian</h4></div>
             <p>Mortadella, arugula, toasted pistachios &amp; stracciatella on house-made focaccia. <span class="price">$17</span></p>
           </div>
-        </article>
-        <article class="dish-card">
-          <div class="thumb"><img src="images/patio.jpg" alt="Bright covered patio seating area at Bee's Bakery Cafe with string lights" loading="lazy"></div>
-          <div class="body">
-            <span class="dish-tag">Weekend Special</span>
-            <div class="row"><h4>Traditional Belgian Waffle</h4></div>
-            <p>Real butter, eggs &amp; buttermilk batter, crisped in our Belgian iron. <span class="price">$8.50</span></p>
-          </div>
-        </article>
+        </div>
       </div>
       <div class="center-cta">
         <a href="menu.html" class="btn btn-primary">See The Full Menu</a>
@@ -574,68 +162,62 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="pad">
+  <section class="pad reveal">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Guests Say It Best</span>
+        <span class="eyebrow" style="justify-content:center">Guests Say It Best</span>
         <h2>572 reviews, one very consistent story</h2>
       </div>
-      <div class="testi-grid">
-        <div class="testi-card">
-          <div>
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
-            <p>"The sourdough pancakes stopped us in our tracks — genuinely one of the best breakfasts we've had anywhere. We split a breakfast sandwich too and it didn't disappoint."</p>
-          </div>
+      <div class="testi-grid reveal-group">
+        <div class="testi-card reveal-item">
+          <span class="stars">★★★★★</span>
+          <p>"The sourdough pancakes stopped us in our tracks — genuinely one of the best breakfasts we've had anywhere. We split a breakfast sandwich too and it didn't disappoint."</p>
           <div class="testi-name">— Google Local Guide</div>
         </div>
-        <div class="testi-card">
-          <div>
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
-            <p>"Great vibe, friendly staff, and the Belgian waffle from the Full Waffle Breakfast might be the best I've ever had — crisp outside, soft inside, cooked perfectly."</p>
-          </div>
+        <div class="testi-card reveal-item">
+          <span class="stars">★★★★★</span>
+          <p>"Great vibe, friendly staff, and the Belgian waffle from the Full Waffle Breakfast might be the best I've ever had — crisp outside, soft inside, cooked perfectly."</p>
           <div class="testi-name">— Karen T., Local Guide</div>
         </div>
-        <div class="testi-card">
-          <div>
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
-            <p>"Our new weekend breakfast tradition. Great for locals and visitors alike, with a huge menu, a variety of seating, and a covered patio that's perfect on a mild morning."</p>
-          </div>
+        <div class="testi-card reveal-item">
+          <span class="stars">★★★★★</span>
+          <p>"Our new weekend breakfast tradition. Great for locals and visitors alike, with a huge menu, a variety of seating, and a covered patio that's perfect on a mild morning."</p>
           <div class="testi-name">— Amy D., Local Guide</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DYNAMIC PORTFOLIO GALLERY (Vanilla JS Port of React/Framer Motion) -->
-  <section class="pg-section" id="archives">
+  <!-- PORTFOLIO GALLERY (3D stacked cards, pure CSS/hover — no JS needed) -->
+  <section class="pg-section reveal" id="archives">
     <div class="container">
       <div class="pg-container">
-        
+
         <div class="pg-header">
           <h2>Browse our memories</h2>
-          <a href="gallery.html" class="pg-btn" aria-label="View full gallery">
+          <a href="gallery.html" class="pg-btn">
             <span>View full gallery</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
             </svg>
           </a>
         </div>
 
-        <!-- Desktop 3D Interactive Track (Controlled by Vanilla JS) -->
+        <!-- Desktop 3D overlapping track -->
         <div class="pg-desktop">
-          <div class="pg-track" id="gallery-track">
-            <!-- Images are injected here via HTML, behavior via JS -->
-            <div class="pg-card"><img src="images/gallery01.jpg" alt="Vintage sewing machines display" loading="lazy"></div>
-            <div class="pg-card"><img src="images/gallery04.jpg" alt="80th birthday celebration at the cafe" loading="lazy"></div>
-            <div class="pg-card"><img src="images/gallery07.jpg" alt="Vintage photo of siblings playing" loading="lazy"></div>
-            <div class="pg-card"><img src="images/gallery10.jpeg" alt="Young girl ready for adventure" loading="lazy"></div>
-            <div class="pg-card"><img src="images/gallery16.webp" alt="Baking memories at home" loading="lazy"></div>
-            <div class="pg-card"><img src="images/gallery25.jpg" alt="Dinosaur volcano birthday cake" loading="lazy"></div>
-            <div class="pg-card"><img src="images/gallery31.jpg" alt="Toddler girl focused on a baseball base" loading="lazy"></div>
+          <div class="pg-track">
+            <div class="pg-card" style="z-index: 7; --dist: 3;"><img src="images/gallery01.jpg" alt="Vintage sewing machines display" loading="lazy"></div>
+            <div class="pg-card" style="z-index: 6; --dist: 2;"><img src="images/gallery04.jpg" alt="80th birthday celebration at the cafe" loading="lazy"></div>
+            <div class="pg-card" style="z-index: 5; --dist: 1;"><img src="images/gallery07.jpg" alt="Vintage photo of siblings playing" loading="lazy"></div>
+            <div class="pg-card" style="z-index: 4; --dist: 0;"><img src="images/gallery10.jpeg" alt="Young girl ready for adventure" loading="lazy"></div>
+            <div class="pg-card" style="z-index: 3; --dist: 1;"><img src="images/gallery16.webp" alt="Baking memories at home" loading="lazy"></div>
+            <div class="pg-card" style="z-index: 2; --dist: 2;"><img src="images/gallery25.jpg" alt="Dinosaur volcano birthday cake" loading="lazy"></div>
+            <div class="pg-card" style="z-index: 1; --dist: 3;"><img src="images/gallery31.jpg" alt="Toddler girl focused on a baseball base" loading="lazy"></div>
           </div>
         </div>
 
-        <!-- Mobile Marquee Track (Pure CSS) -->
+        <!-- Mobile marquee -->
         <div class="pg-mobile">
           <div class="pg-marquee-wrapper">
             <div class="pg-marquee-track">
@@ -647,15 +229,14 @@
               <div class="pg-marquee-item"><img src="images/gallery25.jpg" alt="Dinosaur volcano birthday cake" loading="lazy"></div>
               <div class="pg-marquee-item"><img src="images/gallery31.jpg" alt="Toddler girl focused on a baseball base" loading="lazy"></div>
             </div>
-            <!-- Duplicate tracks for seamless infinite scroll -->
             <div class="pg-marquee-track" aria-hidden="true">
-              <div class="pg-marquee-item"><img src="images/gallery01.jpg" alt="Vintage sewing machines display" loading="lazy"></div>
-              <div class="pg-marquee-item"><img src="images/gallery04.jpg" alt="80th birthday celebration at the cafe" loading="lazy"></div>
-              <div class="pg-marquee-item"><img src="images/gallery07.jpg" alt="Vintage photo of siblings playing" loading="lazy"></div>
-              <div class="pg-marquee-item"><img src="images/gallery10.jpeg" alt="Young girl ready for adventure" loading="lazy"></div>
-              <div class="pg-marquee-item"><img src="images/gallery16.webp" alt="Baking memories at home" loading="lazy"></div>
-              <div class="pg-marquee-item"><img src="images/gallery25.jpg" alt="Dinosaur volcano birthday cake" loading="lazy"></div>
-              <div class="pg-marquee-item"><img src="images/gallery31.jpg" alt="Toddler girl focused on a baseball base" loading="lazy"></div>
+              <div class="pg-marquee-item"><img src="images/gallery01.jpg" alt="" loading="lazy"></div>
+              <div class="pg-marquee-item"><img src="images/gallery04.jpg" alt="" loading="lazy"></div>
+              <div class="pg-marquee-item"><img src="images/gallery07.jpg" alt="" loading="lazy"></div>
+              <div class="pg-marquee-item"><img src="images/gallery10.jpeg" alt="" loading="lazy"></div>
+              <div class="pg-marquee-item"><img src="images/gallery16.webp" alt="" loading="lazy"></div>
+              <div class="pg-marquee-item"><img src="images/gallery25.jpg" alt="" loading="lazy"></div>
+              <div class="pg-marquee-item"><img src="images/gallery31.jpg" alt="" loading="lazy"></div>
             </div>
           </div>
         </div>
@@ -665,7 +246,7 @@
   </section>
 
   <!-- VISIT -->
-  <section class="visit" id="visit">
+  <section class="visit reveal" id="visit">
     <div class="container visit-inner">
       <div>
         <span class="eyebrow on-dark">Plan Your Visit</span>
@@ -686,6 +267,7 @@
       </div>
     </div>
   </section>
+
 </main>
 
 <footer class="site-footer">
@@ -695,7 +277,7 @@
         <img src="images/logo bee's.png" alt="Bee's Bakery Cafe Logo" class="brand-logo" style="height: 90px; margin-bottom: 15px;">
       </a>
       <p>Scratch-made breakfast, lunch and bakery favorites near the entrance to Yosemite National Park.</p>
-      
+
       <div class="footer-social">
         <a href="https://www.instagram.com/beesbakerycafe" target="_blank" rel="noopener" aria-label="Instagram">
           <img src="images/Instagram_icon.png" alt="Instagram" class="social-icon">
@@ -705,7 +287,7 @@
         </a>
       </div>
     </div>
-    
+
     <div class="footer-col">
       <h5>Explore</h5>
       <ul>
@@ -739,84 +321,6 @@
   </div>
 </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    /* ==========================================
-       1. Mobile Nav Toggle
-       ========================================== */
-    const toggleBtn = document.getElementById('mobile-menu-btn');
-    const nav = document.getElementById('main-nav');
-    
-    if (toggleBtn && nav) {
-      toggleBtn.addEventListener('click', function () {
-        const isOpen = nav.classList.toggle('open');
-        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      });
-      // Fechar menu ao clicar em links (útil para navegação em âncoras)
-      nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          nav.classList.remove('open');
-          toggleBtn.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-
-    /* ==========================================
-       2. Footer Dynamic Year
-       ========================================== */
-    document.querySelectorAll('.year').forEach(el => {
-      el.textContent = new Date().getFullYear();
-    });
-
-    /* ==========================================
-       3. 3D Interactive Gallery Logic (Vanilla JS)
-       Recreating the Framer Motion staggered behavior
-       ========================================== */
-    const track = document.getElementById('gallery-track');
-    const cards = track ? Array.from(track.querySelectorAll('.pg-card')) : [];
-
-    if (cards.length > 0) {
-      const totalCards = cards.length;
-      const middleIndex = Math.floor(totalCards / 2);
-      const maxHeight = 120; // Maximum pop-up height for the center card
-      
-      // Function to set the resting state of the cards
-      const setRestingState = () => {
-        cards.forEach((card, index) => {
-          const distanceFromMiddle = Math.abs(index - middleIndex);
-          const staggerOffset = maxHeight - distanceFromMiddle * 20;
-          
-          card.style.transform = `perspective(5000px) rotateY(-45deg) translateY(-${staggerOffset}px)`;
-          card.style.zIndex = totalCards - index;
-        });
-      };
-
-      // Initialize resting state
-      setRestingState();
-
-      // Handle hover interactions
-      cards.forEach((card, hoveredIndex) => {
-        card.addEventListener('mouseenter', () => {
-          cards.forEach((c, index) => {
-            if (index === hoveredIndex) {
-              // The hovered card pops forward and up
-              c.style.transform = `perspective(5000px) rotateY(-45deg) translateY(-140px) scale(1.05)`;
-              c.style.zIndex = 50; 
-            } else {
-              // The other cards fall back to the baseline
-              c.style.transform = `perspective(5000px) rotateY(-45deg) translateY(0px)`;
-              c.style.zIndex = totalCards - index;
-            }
-          });
-        });
-      });
-
-      // Reset to staggered look when mouse leaves the whole track area
-      track.addEventListener('mouseleave', () => {
-        setRestingState();
-      });
-    }
-  });
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
