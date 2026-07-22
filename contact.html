@@ -13,12 +13,268 @@
 <meta property="og:image" content="images/avocado-toast.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#17676A">
+<meta name="google" content="notranslate"> <!-- Bloqueio de tradução automática -->
 <link rel="icon" type="image/png" href="images/logo bee's.png">
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,500..700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* ============================================================
+     BEE'S BAKERY CAFE — Design tokens & Shared Styles
+     ============================================================ */
+  :root {
+    --cream:      #FBF2DE;
+    --cream-2:    #F3E5C0;
+    --paper:      #FFFBF2;
+    --ink:        #241D14;
+    --ink-soft:   #55493A;
+    --teal:       #17676A;
+    --teal-deep:  #0D4547;
+    --teal-tint:  #E4F0EE;
+    --honey:      #E4A233;
+    --honey-deep: #B97C1A;
+    --coral:      #C24A3B;
+    --coral-deep: #9B3A2E;
+    --line:       #DFCB9C;
+
+    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "Space Mono", "SFMono-Regular", Menlo, monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 14px;
+    --radius-lg: 28px;
+    --shadow-card: 0 18px 40px -22px rgba(36,29,20,.45);
+    --shadow-soft: 0 10px 24px -16px rgba(36,29,20,.35);
+
+    --maxw: 1220px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0 0 .5em;
+    color: var(--ink);
+    letter-spacing: -.01em;
+  }
+  p { margin: 0 0 1em; }
+  
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Utilities ---------- */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    display: inline-flex;
+    align-items: center;
+    gap: .5em;
+    margin-bottom: 1em;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px; height: 2px;
+    background: var(--coral);
+    display: inline-block;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: .95rem;
+    padding: .95em 1.6em;
+    border-radius: 100px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--coral); color: var(--paper); box-shadow: var(--shadow-soft); }
+  .btn-primary:hover { background: var(--coral-deep); }
+  .btn-ghost { background: transparent; border-color: currentColor; color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn-block { width: 100%; }
+  
+  .section-head { max-width: 640px; margin-bottom: 2.6rem; }
+
+  /* ---------- Header & Nav ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(251,242,222,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    max-width: var(--maxw); margin: 0 auto;
+  }
+  .brand-logo { height: 70px; width: auto; display: block; }
+  
+  .main-nav { display: flex; align-items: center; gap: 2.2em; }
+  .main-nav a {
+    font-size: .95rem; font-weight: 600; color: var(--ink-soft);
+    position: relative; padding: .2em 0; transition: color 0.2s ease;
+  }
+  .main-nav a:hover, .main-nav a.active { color: var(--coral); }
+  .main-nav a.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--coral);
+  }
+  .header-cta { display: flex; align-items: center; gap: 12px; }
+
+  .nav-toggle {
+    display: none; background: none; border: none; cursor: pointer; padding: 6px;
+    flex-direction: column; gap: 5px; z-index: 101;
+  }
+  .nav-toggle span { 
+    width: 24px; height: 2px; background: var(--ink); display: block; 
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  @media (max-width: 900px) {
+    .main-nav {
+      position: fixed; inset: 0; top: 98px; width: 100vw; 
+      height: calc(100vh - 98px); height: calc(100dvh - 98px);
+      background: var(--cream); display: flex; flex-direction: column; 
+      align-items: center; justify-content: flex-start;
+      padding: 4rem 1.6rem; gap: 2.5rem; 
+      transform: translateX(100%); transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease;
+      overflow-y: auto; border-top: 1px solid var(--line);
+      z-index: 100; opacity: 0; visibility: hidden;
+    }
+    .main-nav.open { transform: translateX(0); opacity: 1; visibility: visible; }
+    .main-nav a { font-size: 1.8rem; width: 100%; text-align: center; display: block; }
+    .nav-toggle { display: flex; }
+    .header-cta .btn-ghost { display: none; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+
+  /* ---------- Page header (inner pages) ---------- */
+  .page-header {
+    padding: 120px 24px 64px;
+    background: linear-gradient(180deg, rgba(23,103,106,.06), transparent);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  .page-header h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); }
+  .page-header p { max-width: 56ch; margin: 0 auto; color: var(--ink-soft); font-size: 1.08rem; }
+  .breadcrumb { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 1em; display: block; }
+
+  /* ---------- Contact Layout ---------- */
+  .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; padding: 80px 0; }
+  .contact-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-soft); }
+  
+  .contact-info-list li { display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .contact-info-list li:first-child { border-top: none; padding-top: 0; }
+  .contact-info-list b { display: block; font-size: 1rem; }
+  .contact-info-list span { color: var(--ink-soft); font-size: .92rem; }
+  .contact-info-list .ic {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--teal-tint); color: var(--teal-deep);
+    display: flex; align-items: center; justify-content: center; flex: none; font-size: 1.1rem;
+  }
+
+  /* Form Styles */
+  .field { margin-bottom: 1.2rem; }
+  .field label { 
+    display: block; font-family: var(--font-mono); font-size: .72rem; 
+    text-transform: uppercase; letter-spacing: .06em; margin-bottom: .5em; color: var(--ink-soft); 
+  }
+  .field input, .field textarea, .field select {
+    width: 100%; padding: .85em 1em; border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+    font-family: var(--font-body); font-size: .98rem; background: var(--cream); color: var(--ink);
+    transition: border-color 0.2s ease;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--coral); outline: none; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-note { font-size: .82rem; color: var(--ink-soft); margin-top: 1.5em; text-align: center;}
+
+  /* Hours Table */
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: .5em; }
+  .hours-table td { padding: .7em 0; border-top: 1px dashed var(--line); font-size: .94rem; }
+  .hours-table td:last-child { text-align: right; font-family: var(--font-mono); }
+  .hours-table tr:first-child td { border-top: none; }
+  .today { color: var(--coral-deep); font-weight: 700; background: rgba(194, 74, 59, 0.05); }
+
+  @media (max-width: 900px) { 
+    .contact-grid { grid-template-columns: 1fr; padding: 56px 0; gap: 32px; } 
+    .field-row { grid-template-columns: 1fr; }
+    .contact-card { padding: 24px; }
+  }
+
+  /* ---------- Map Section ---------- */
+  .pad { padding: 88px 0; }
+  .pad-sm { padding: 56px 0; }
+  .map-frame { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); border: 0; margin-bottom: 24px; }
+  .map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .center-cta { text-align: center; }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--ink); color: #EFE6D2; padding: 64px 0 28px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  .footer-brand p { color: #C9BDA4; max-width: 32ch; font-size: 0.95rem; }
+  .footer-col h5 { font-family: var(--font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--honey); margin-bottom: 1.1em; }
+  .footer-col li { margin-bottom: .7em; font-size: 0.95rem; }
+  .footer-col a { color: #D9CCB2; transition: color 0.2s ease; }
+  .footer-col a:hover { color: var(--honey); }
+  .social-icon { width: 22px; height: 22px; object-fit: contain; display: block; filter: brightness(0.8); transition: filter 0.2s ease; }
+  .footer-social { display: flex; gap: 12px; margin-top: 1.2em; }
+  .footer-social a {
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid #4B4131;
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
+  }
+  .footer-social a:hover { border-color: var(--honey); }
+  .footer-social a:hover .social-icon { filter: brightness(1); }
+  .footer-bottom {
+    margin-top: 52px; padding-top: 24px; border-top: 1px solid #3A3226;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    font-size: .82rem; color: #9C907A;
+  }
+  @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Animations ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
 <body>
 
@@ -37,7 +293,7 @@
     <div class="header-cta">
       <a href="tel:+15596832393" class="btn btn-ghost">Call Us</a>
       <a href="https://order.toasttab.com/online/bees-bakery-cafe" target="_blank" rel="noopener" class="btn btn-primary">Order Online</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <button class="nav-toggle" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -56,6 +312,7 @@
   <div class="container contact-grid">
 
     <div>
+      <!-- Contact Info Card -->
       <div class="contact-card">
         <h3 style="margin-bottom:1.2rem;">Get In Touch</h3>
         <ul class="contact-info-list">
@@ -86,6 +343,7 @@
         </div>
       </div>
 
+      <!-- Hours Card -->
       <div class="contact-card" style="margin-top:24px;">
         <h3 style="margin-bottom:.6rem;">Hours</h3>
         <table class="hours-table" id="hours-table">
@@ -101,6 +359,7 @@
       </div>
     </div>
 
+    <!-- Contact Form Card -->
     <div class="contact-card">
       <h3 style="margin-bottom:.3rem;">Send Us a Message</h3>
       <p style="color:var(--ink-soft);margin-bottom:1.6rem;">Fill this out and it'll open a pre-filled email to our team.</p>
@@ -141,10 +400,11 @@
   </div>
 </section>
 
+<!-- Map Section -->
 <section class="pad-sm reveal" id="map">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Find Us</span>
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">Find Us</span>
       <h2>40250 Junction Drive, Oakhurst, CA</h2>
       <p>Right off Highway 41, minutes from the southern entrance to Yosemite National Park.</p>
     </div>
@@ -206,12 +466,90 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(){
-    var today = new Date().getDay();
-    var row = document.querySelector('#hours-table td[data-day="' + today + '"]');
-    if(row){ row.classList.add('today'); row.nextElementSibling.classList.add('today'); }
+    
+    /* ==========================================
+       1. Mobile Nav Toggle
+       ========================================== */
+    const toggleBtn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('main-nav');
+    
+    if (toggleBtn && nav) {
+      toggleBtn.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    /* ==========================================
+       2. Footer Dynamic Year
+       ========================================== */
+    document.querySelectorAll('.year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    /* ==========================================
+       3. Highlight Today's Hours
+       ========================================== */
+    const today = new Date().getDay();
+    const row = document.querySelector('#hours-table td[data-day="' + today + '"]');
+    if(row) { 
+      row.classList.add('today'); 
+      row.nextElementSibling.classList.add('today'); 
+    }
+
+    /* ==========================================
+       4. Contact Form Mailto Fallback
+       ========================================== */
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const phone = form.phone.value.trim();
+        const reason = form.reason.value;
+        const message = form.message.value.trim();
+        
+        const subject = encodeURIComponent('Website inquiry from ' + (name || 'a guest') + ' - ' + reason);
+        const body = encodeURIComponent(
+          'Name: ' + name + '\n' +
+          'Email: ' + email + '\n' +
+          'Phone: ' + phone + '\n' +
+          'Topic: ' + reason + '\n\n' +
+          message
+        );
+        window.location.href = 'mailto:beesbakeryoakhurst@gmail.com?subject=' + subject + '&body=' + body;
+      });
+    }
+
+    /* ==========================================
+       5. Scroll Reveal Animations
+       ========================================== */
+    const revealElements = document.querySelectorAll('.reveal');
+    if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -15% 0px',
+        threshold: 0
+      });
+      revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('active'));
+    }
+    
   });
 </script>
 </body>

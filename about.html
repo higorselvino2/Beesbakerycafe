@@ -6,6 +6,7 @@
 <title>About Us | Bee's Bakery Cafe — Oakhurst, CA</title>
 <meta name="description" content="Meet Bee's Bakery Cafe: a women-owned, LGBTQ+ welcoming bakery cafe in Oakhurst, CA serving scratch-made breakfast & lunch with a retro, honeycomb-warm dining room.">
 <link rel="canonical" href="https://www.beesbakerycafe.com/about.html">
+
 <meta property="og:title" content="About Us | Bee's Bakery Cafe">
 <meta property="og:description" content="A women-owned, LGBTQ+ welcoming bakery cafe in Oakhurst, CA — scratch-made food in a retro, honeycomb-warm dining room.">
 <meta property="og:type" content="website">
@@ -13,12 +14,315 @@
 <meta property="og:image" content="images/vintage-family.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#17676A">
+<meta name="google" content="notranslate"> <!-- Bloqueia tradução automática do menu -->
 <link rel="icon" type="image/png" href="images/logo bee's.png">
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,500..700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* ============================================================
+     BEE'S BAKERY CAFE — Design tokens & Base Styles
+     ============================================================ */
+  :root {
+    --cream:      #FBF2DE;
+    --cream-2:    #F3E5C0;
+    --paper:      #FFFBF2;
+    --ink:        #241D14;
+    --ink-soft:   #55493A;
+    --teal:       #17676A;
+    --teal-deep:  #0D4547;
+    --teal-tint:  #E4F0EE;
+    --honey:      #E4A233;
+    --honey-deep: #B97C1A;
+    --coral:      #C24A3B;
+    --coral-deep: #9B3A2E;
+    --line:       #DFCB9C;
+
+    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "Space Mono", "SFMono-Regular", Menlo, monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 14px;
+    --radius-lg: 28px;
+    --shadow-card: 0 18px 40px -22px rgba(36,29,20,.45);
+    --shadow-soft: 0 10px 24px -16px rgba(36,29,20,.35);
+
+    --maxw: 1220px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0 0 .5em;
+    color: var(--ink);
+    letter-spacing: -.01em;
+  }
+  p { margin: 0 0 1em; }
+  
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Utilities ---------- */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    display: inline-flex;
+    align-items: center;
+    gap: .5em;
+    margin-bottom: 1em;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px; height: 2px;
+    background: var(--coral);
+    display: inline-block;
+  }
+  .eyebrow.on-dark { color: var(--honey); }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: .95rem;
+    padding: .95em 1.6em;
+    border-radius: 100px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--coral); color: var(--paper); box-shadow: var(--shadow-soft); }
+  .btn-primary:hover { background: var(--coral-deep); }
+  .btn-ghost { background: transparent; border-color: currentColor; color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn-ghost.on-dark { color: var(--paper); }
+  .btn-ghost.on-dark:hover { background: var(--paper); color: var(--teal-deep); }
+  .btn-honey { background: var(--honey); color: var(--ink); }
+  .btn-honey:hover { background: var(--honey-deep); color: var(--paper); }
+
+  .section-head { max-width: 640px; margin-bottom: 2.6rem; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head p { color: var(--ink-soft); font-size: 1.05rem; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(251,242,222,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    max-width: var(--maxw); margin: 0 auto;
+  }
+  .brand-logo { height: 70px; width: auto; display: block; }
+  
+  .main-nav { display: flex; align-items: center; gap: 2.2em; }
+  .main-nav a {
+    font-size: .95rem; font-weight: 600; color: var(--ink-soft);
+    position: relative; padding: .2em 0; transition: color 0.2s ease;
+  }
+  .main-nav a:hover, .main-nav a.active { color: var(--coral); }
+  .main-nav a.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--coral);
+  }
+  .header-cta { display: flex; align-items: center; gap: 12px; }
+
+  .nav-toggle {
+    display: none; background: none; border: none; cursor: pointer; padding: 6px;
+    flex-direction: column; gap: 5px; z-index: 101;
+  }
+  .nav-toggle span { 
+    width: 24px; height: 2px; background: var(--ink); display: block; 
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  /* Mobile Menu Styles Corrigidos */
+  @media (max-width: 900px) {
+    .main-nav {
+      position: fixed; 
+      inset: 0; 
+      top: 98px; 
+      width: 100vw; 
+      height: calc(100vh - 98px);
+      height: calc(100dvh - 98px);
+      background: var(--cream);
+      display: flex;
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: flex-start;
+      padding: 4rem 1.6rem;
+      gap: 2.5rem; 
+      transform: translateX(100%); 
+      transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease;
+      overflow-y: auto; 
+      border-top: 1px solid var(--line);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .main-nav.open { 
+      transform: translateX(0); 
+      opacity: 1;
+      visibility: visible;
+    }
+    .main-nav a { 
+      font-size: 1.8rem; 
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+    .nav-toggle { display: flex; }
+    .header-cta .btn-ghost { display: none; }
+    
+    /* Hamburger to X Animation */
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+
+  /* ---------- Page header (inner pages) ---------- */
+  .page-header {
+    padding: 120px 24px 64px;
+    background: linear-gradient(180deg, rgba(23,103,106,.06), transparent);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  .page-header h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); }
+  .page-header p { max-width: 52ch; margin: 0 auto; color: var(--ink-soft); font-size: 1.08rem; }
+  .breadcrumb { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 1em; display: block; }
+
+  /* ---------- About Content ---------- */
+  .heritage { padding: 96px 0; }
+  .heritage .container {
+    max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2.5rem;
+  }
+  .heritage-media { position: relative; width: 100%; }
+  .heritage-media img { border-radius: var(--radius-md); box-shadow: var(--shadow-card); filter: sepia(.15); width: 100%; max-height: 450px; object-fit: cover; }
+  .heritage-media::after {
+    content: "Est. atmosphere"; position: absolute; top: -16px; right: -16px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 50%;
+    width: 88px; height: 88px; display: flex; align-items: center; justify-content: center;
+    text-align: center; font-family: var(--font-mono); font-size: .62rem; text-transform: uppercase;
+    letter-spacing: .05em; padding: 10px; box-shadow: var(--shadow-soft); transform: rotate(6deg);
+  }
+  
+  .section-tinted { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 96px 0; }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .value-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 30px; }
+  .value-card .num { font-family: var(--font-mono); color: var(--coral); font-size: .8rem; letter-spacing: .1em; }
+  .value-card h3 { font-size: 1.25rem; margin: .5em 0 .4em; }
+  .value-card p { color: var(--ink-soft); font-size: .94rem; margin: 0; }
+  @media (max-width: 900px) { .values-grid { grid-template-columns: 1fr; } }
+
+  .split { padding: 96px 0; }
+  .split .container {
+    max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2.5rem;
+  }
+  .split-media { width: 100%; }
+  .split-media img { border-radius: var(--radius-lg); box-shadow: var(--shadow-card); width: 100%; max-height: 450px; object-fit: cover; }
+  .split-copy h2 { font-size: clamp(2rem, 3.4vw, 2.7rem); }
+  .split-copy p { color: var(--ink-soft); font-size: 1.05rem; }
+
+  /* ---------- Visit / location ---------- */
+  .visit {
+    background: var(--teal-deep); color: var(--cream);
+    padding: 96px 0; position: relative; overflow: hidden;
+  }
+  .visit::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(228,162,51,.14), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(194,74,59,.16), transparent 45%);
+    pointer-events: none;
+  }
+  .visit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; position: relative; align-items: center;}
+  .visit h2 { color: var(--paper); font-size: clamp(2rem, 3.4vw, 2.6rem); }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 2rem; }
+  .map-frame { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); border: 0; height: 100%; min-height: 350px;}
+  .map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  @media (max-width: 900px) { .visit-inner { grid-template-columns: 1fr; } }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--ink); color: #EFE6D2; padding: 64px 0 28px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  .footer-brand p { color: #C9BDA4; max-width: 32ch; font-size: 0.95rem; }
+  .footer-col h5 { font-family: var(--font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--honey); margin-bottom: 1.1em; }
+  .footer-col li { margin-bottom: .7em; font-size: 0.95rem; }
+  .footer-col a { color: #D9CCB2; transition: color 0.2s ease; }
+  .footer-col a:hover { color: var(--honey); }
+  .social-icon { width: 22px; height: 22px; object-fit: contain; display: block; filter: brightness(0.8); transition: filter 0.2s ease; }
+  .footer-social { display: flex; gap: 12px; margin-top: 1.2em; }
+  .footer-social a {
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid #4B4131;
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
+  }
+  .footer-social a:hover { border-color: var(--honey); }
+  .footer-social a:hover .social-icon { filter: brightness(1); }
+  .footer-bottom {
+    margin-top: 52px; padding-top: 24px; border-top: 1px solid #3A3226;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    font-size: .82rem; color: #9C907A;
+  }
+  @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Animations ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Staggered animation for grid items */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .reveal-group.active .reveal-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-group.active .reveal-item:nth-child(1) { transition-delay: 0.1s; }
+  .reveal-group.active .reveal-item:nth-child(2) { transition-delay: 0.25s; }
+  .reveal-group.active .reveal-item:nth-child(3) { transition-delay: 0.4s; }
+</style>
 </head>
 <body>
 
@@ -37,7 +341,7 @@
     <div class="header-cta">
       <a href="tel:+15596832393" class="btn btn-ghost">Call Us</a>
       <a href="https://order.toasttab.com/online/bees-bakery-cafe" target="_blank" rel="noopener" class="btn btn-primary">Order Online</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <button class="nav-toggle" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -52,77 +356,79 @@
   </div>
 </header>
 
-<section class="heritage reveal">
-  <div class="container">
-    <div class="heritage-media">
-      <img src="images/vintage-family.jpg" alt="Vintage black-and-white photograph of a woman preparing a holiday turkey in a mid-century kitchen" loading="lazy">
+<main>
+  <section class="heritage reveal">
+    <div class="container">
+      <div class="heritage-media">
+        <img src="images/vintage-family.jpg" alt="Vintage black-and-white photograph of a woman preparing a holiday turkey in a mid-century kitchen" loading="lazy">
+      </div>
+      <div>
+        <span class="eyebrow" style="justify-content: center;">Where the Look Comes From</span>
+        <h2>A love letter to the mid-century kitchen</h2>
+        <p>Step inside and you'll notice it immediately: sunburst clocks, a wall of vintage sewing machines, watermelon-print pillows, honeycomb gold everywhere. It's not a theme we picked off a shelf — it's a tribute to the home kitchens where family recipes got their start, the ones with a percolator always warm and a turkey always resting on the counter before Sunday dinner. We wanted a room that felt like somebody's grandmother owned it, because in spirit, she does.</p>
+        <p>That same care shows up on the plate. Waffle batter made with real butter and buttermilk. Burgers smashed to order from Certified Angus beef that's never frozen. A biscuit-and-gravy breakfast built the slow way. Nothing here is an accident, and nothing is rushed.</p>
+      </div>
     </div>
-    <div>
-      <span class="eyebrow" style="justify-content: center;">Where the Look Comes From</span>
-      <h2>A love letter to the mid-century kitchen</h2>
-      <p>Step inside and you'll notice it immediately: sunburst clocks, a wall of vintage sewing machines, watermelon-print pillows, honeycomb gold everywhere. It's not a theme we picked off a shelf — it's a tribute to the home kitchens where family recipes got their start, the ones with a percolator always warm and a turkey always resting on the counter before Sunday dinner. We wanted a room that felt like somebody's grandmother owned it, because in spirit, she does.</p>
-      <p>That same care shows up on the plate. Waffle batter made with real butter and buttermilk. Burgers smashed to order from Certified Angus beef that's never frozen. A biscuit-and-gravy breakfast built the slow way. Nothing here is an accident, and nothing is rushed.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="section-tinted reveal">
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow" style="justify-content:center">What We Stand For</span>
-      <h2>The values behind every plate</h2>
+  <section class="section-tinted reveal">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow" style="justify-content:center">What We Stand For</span>
+        <h2>The values behind every plate</h2>
+      </div>
+      <div class="values-grid reveal-group">
+        <div class="value-card reveal-item">
+          <span class="num">Local</span>
+          <h3>Sourced close to home</h3>
+          <p>Our lattes run on Reverent Coffee, roasted nearby, and our parfaits are finished with honey harvested by Hillerman Honey. When we can buy local, we do.</p>
+        </div>
+        <div class="value-card reveal-item">
+          <span class="num">Welcoming</span>
+          <h3>Everyone gets a seat</h3>
+          <p>Bee's is proud to be a women-owned business and an LGBTQ+ welcoming space. Whether you're a local regular or a Yosemite-bound traveler, you're family here.</p>
+        </div>
+        <div class="value-card reveal-item">
+          <span class="num">Scratch-Made</span>
+          <h3>Cooked, not assembled</h3>
+          <p>From house-made cheese sauce to hand-breaded chicken and burger sauce mixed in-house, our kitchen builds flavor from the ground up, every single day.</p>
+        </div>
+      </div>
     </div>
-    <div class="values-grid reveal-group">
-      <div class="value-card reveal-item">
-        <span class="num">Local</span>
-        <h3>Sourced close to home</h3>
-        <p>Our lattes run on Reverent Coffee, roasted nearby, and our parfaits are finished with honey harvested by Hillerman Honey. When we can buy local, we do.</p>
-      </div>
-      <div class="value-card reveal-item">
-        <span class="num">Welcoming</span>
-        <h3>Everyone gets a seat</h3>
-        <p>Bee's is proud to be a women-owned business and an LGBTQ+ welcoming space. Whether you're a local regular or a Yosemite-bound traveler, you're family here.</p>
-      </div>
-      <div class="value-card reveal-item">
-        <span class="num">Scratch-Made</span>
-        <h3>Cooked, not assembled</h3>
-        <p>From house-made cheese sauce to hand-breaded chicken and burger sauce mixed in-house, our kitchen builds flavor from the ground up, every single day.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="split reveal">
-  <div class="container">
-    <div class="split-media">
-      <img src="images/lounge-interior.jpg" alt="Cozy vintage lounge seating with a shelf of colorful antique sewing machines at Bee's Bakery Cafe" loading="lazy">
-    </div>
-    <div class="split-copy">
-      <span class="eyebrow" style="justify-content: center;">More Than Coffee</span>
-      <h2>A gathering place, on and off the clock</h2>
-      <p>Grab a stool at the counter for a quick espresso, sink into the vintage sofa with a book, or push two tables together for a birthday breakfast — the dining room is built to flex. On select evenings, Bee's helps bring dinner and live music together for the Coolwater Ranch Concert Series, with menus curated by our chef for the night.</p>
-      <p>However you find us — solo, with the family, or fresh off the trail from Yosemite — we want the visit to feel unhurried.</p>
-      <a href="gallery.html" class="btn btn-ghost" style="margin-top: 1.5rem;">See The Space</a>
-    </div>
-  </div>
-</section>
-
-<section class="visit reveal">
-  <div class="container visit-inner">
-    <div>
-      <span class="eyebrow on-dark">Come Say Hello</span>
-      <h2>We're saving you a table</h2>
-      <p style="color:#DDEFEC;max-width:44ch;">Open daily for breakfast and lunch in downtown Oakhurst — just off Highway 41 on the way to Yosemite.</p>
-      <div class="hero-ctas" style="margin-top:1.6rem;">
-        <a href="menu.html" class="btn btn-honey">View The Menu</a>
-        <a href="contact.html" class="btn btn-ghost on-dark">Plan Your Visit</a>
+  <section class="split reveal">
+    <div class="container">
+      <div class="split-media">
+        <img src="images/lounge-interior.jpg" alt="Cozy vintage lounge seating with a shelf of colorful antique sewing machines at Bee's Bakery Cafe" loading="lazy">
+      </div>
+      <div class="split-copy">
+        <span class="eyebrow" style="justify-content: center;">More Than Coffee</span>
+        <h2>A gathering place, on and off the clock</h2>
+        <p>Grab a stool at the counter for a quick espresso, sink into the vintage sofa with a book, or push two tables together for a birthday breakfast — the dining room is built to flex. On select evenings, Bee's helps bring dinner and live music together for the Coolwater Ranch Concert Series, with menus curated by our chef for the night.</p>
+        <p>However you find us — solo, with the family, or fresh off the trail from Yosemite — we want the visit to feel unhurried.</p>
+        <a href="gallery.html" class="btn btn-ghost" style="margin-top: 1.5rem;">See The Space</a>
       </div>
     </div>
-    <div class="map-frame">
-      <iframe src="https://www.google.com/maps?q=40250+Junction+Drive,+Oakhurst,+CA+93644&output=embed" title="Map to Bee's Bakery Cafe" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <section class="visit reveal">
+    <div class="container visit-inner">
+      <div>
+        <span class="eyebrow on-dark">Come Say Hello</span>
+        <h2>We're saving you a table</h2>
+        <p style="color:#DDEFEC;max-width:44ch;">Open daily for breakfast and lunch in downtown Oakhurst — just off Highway 41 on the way to Yosemite.</p>
+        <div class="hero-ctas">
+          <a href="menu.html" class="btn btn-honey">View The Menu</a>
+          <a href="contact.html" class="btn btn-ghost on-dark">Plan Your Visit</a>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps?q=40250+Junction+Drive,+Oakhurst,+CA+93644&output=embed" title="Map to Bee's Bakery Cafe" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -173,6 +479,61 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    /* ==========================================
+       1. Mobile Nav Toggle
+       ========================================== */
+    const toggleBtn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('main-nav');
+    
+    if (toggleBtn && nav) {
+      toggleBtn.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      // Fecha o menu ao clicar em algum link
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    /* ==========================================
+       2. Footer Dynamic Year
+       ========================================== */
+    document.querySelectorAll('.year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    /* ==========================================
+       3. Scroll Reveal Animations
+       (Ativa as classes .reveal e .reveal-group ao rolar a página)
+       ========================================== */
+    const revealElements = document.querySelectorAll('.reveal, .reveal-group');
+    
+    if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Opcional: Descomente a linha abaixo se quiser que a animação ocorra apenas uma vez
+            // observer.unobserve(entry.target); 
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -15% 0px', // Ativa quando o elemento entra 15% na tela
+        threshold: 0
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+      // Fallback para navegadores muito antigos (mostra tudo imediatamente)
+      revealElements.forEach(el => el.classList.add('active'));
+    }
+  });
+</script>
 </body>
 </html>
