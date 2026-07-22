@@ -135,6 +135,8 @@ section{ position:relative; }
   background:rgba(251,242,222,.92);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
 }
 .header-inner{
   display:flex; align-items:center; justify-content:space-between;
@@ -512,7 +514,9 @@ section{ position:relative; }
   border-bottom:1px solid var(--line);
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
-  position:relative;
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
+  will-change:transform;
 }
 .menu-nav::after{
   content:"";
