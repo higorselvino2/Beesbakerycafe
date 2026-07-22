@@ -163,6 +163,10 @@ section{ position:relative; }
 .nav-toggle span{ width:24px; height:2px; background:var(--ink); display:block; }
 
 @media (max-width: 900px){
+  .menu-section{
+    padding-top:110px;
+    scroll-margin-top:130px;
+
   .header-inner{ padding:11px 20px; }
   .brand-logo{ height:48px; }
   .main-nav{
